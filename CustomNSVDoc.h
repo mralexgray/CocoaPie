@@ -1,5 +1,5 @@
 //
-//  MyDocument.m
+//  MyDocument.h
 //  CustomNSView
 //
 //  Created by Tim Isted on 27/11/2008.
@@ -29,33 +29,17 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //  OTHER DEALINGS IN THE SOFTWARE.
 
-#import "MyDocument.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation MyDocument
+@interface NSColorTransformer  : NSValueTransformer
 
-- (id)init 
+@end
+@interface CustomNSVDoc : NSPersistentDocument
 {
-    self = [super init];
-    if (self != nil) {
-        // initialization code
-    }
-    return self;
-}
-
-- (NSString *)windowNibName 
-{
-    return @"MyDocument";
-}
-
-- (void)windowControllerDidLoadNib:(NSWindowController *)windowController 
-{
-	[super windowControllerDidLoadNib:windowController];
-	
-	[pieChartView bind:@"segmentNamesArray" toObject:segmentsArrayController withKeyPath:@"arrangedObjects.name" options:nil];
-	[pieChartView bind:@"segmentValuesArray" toObject:segmentsArrayController withKeyPath:@"arrangedObjects.amount" options:nil];
-	[pieChartView bind:@"selectionIndexes" toObject:segmentsArrayController withKeyPath:@"selectionIndexes" options:nil];
-	[segmentsArrayController bind:@"selectionIndexes" toObject:pieChartView withKeyPath:@"selectionIndexes" options:nil];
-	[sliderRotationControl bind:@"value" toObject:pieChartView withKeyPath:@"rotationAmount" options:nil];
+	IBOutlet NSArrayController *segmentsArrayController;
+	IBOutlet NSView *pieChartView;
+	IBOutlet NSSlider *sliderRotationControl;
+	IBOutlet NSColorWell *well;
 }
 
 @end

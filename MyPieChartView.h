@@ -33,37 +33,20 @@
 
 
 @interface MyPieChartView : NSView 
-{
-	NSArray *_segmentNamesArray;
-	NSArray *_segmentValuesArray;
-	
-	NSMutableArray *_segmentPathsArray;
-	NSMutableArray *_segmentTextsArray;
-	
-	NSIndexSet *_selectionIndexes;
-	
-	float _rotationAmount;
-}
+//{
 
-- (NSArray *)segmentNamesArray;
-- (void)setSegmentNamesArray:(NSArray *)newArray;
-
-- (NSArray *)segmentValuesArray;
-- (void)setSegmentValuesArray:(NSArray *)newArray;
-
-- (NSArray *)segmentPathsArray;
-- (NSArray *)segmentTextsArray;
-- (void)generateDrawingInformation;
-
-- (NSColor *)randomColor;
-- (NSColor *)colorForIndex:(unsigned)index;
-
-- (NSIndexSet *)selectionIndexes;
-- (void)setSelectionIndexes:(NSIndexSet *)newIndexes;
-
+//	NSIndexSet *_selectionIndexes;
+//	float _rotationAmount;
+//	NSColor *_color;
+//}
+@property (assign) IBOutlet NSArrayController *ac;
+@property (nonatomic) BOOL needsDisplay;
+@property (copy) NSArray *segmentNamesArray, *segmentValuesArray;
+@property (strong, nonatomic) NSMutableArray *segmentPathsArray, *segmentTextsArray;
+//- (void)generateDrawingInformation;
+- (NSColor*)colorForIndex:(NSUInteger)index;
+@property (strong, nonatomic) NSMutableIndexSet *selectionIndexes;
 - (int)objectIndexForPoint:(NSPoint)thePoint;
-
-- (void)setRotationAmount:(NSNumber *)value;
-- (NSNumber *)rotationAmount;
+@property (strong, nonatomic) NSNumber *rotationAmount;
 
 @end
